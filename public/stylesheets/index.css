@@ -211,6 +211,7 @@ body .container .emails-container .side-panel .content .email-lists .email-list 
 
 html .container .emails-container .side-panel .content .email-lists .email-list > li .content,
 body .container .emails-container .side-panel .content .email-lists .email-list > li .content {
+  pointer-events: none;
   height: 100%;
 }
 
@@ -275,6 +276,7 @@ body .container .emails-container .side-panel .content .email-lists .email-list 
       -ms-flex: 1;
           flex: 1;
   min-width: 42px;
+  pointer-events: none;
 }
 
 html .container .emails-container .side-panel .content .email-lists .email-list > li .content,
@@ -282,6 +284,7 @@ body .container .emails-container .side-panel .content .email-lists .email-list 
   -webkit-box-flex: 9;
       -ms-flex: 9;
           flex: 9;
+  pointer-events: none;
 }
 
 html .container .emails-container .main-panel,

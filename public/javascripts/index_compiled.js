@@ -97,6 +97,8 @@ var DomUtils = function () {
           emailList.appendChild(liItem);
         }
       }
+
+      return liItem;
     };
 
     return {
@@ -334,6 +336,8 @@ function (_BasePage) {
   }, {
     key: "_populateEmailList",
     value: function _populateEmailList() {
+      var _this = this;
+
       GmailAPI.getEmailList({
         userId: "me",
         labelIds: ["INBOX"]
@@ -346,12 +350,9 @@ function (_BasePage) {
             id: message.id,
             format: "metadata"
           }).then(function (messageminimal) {
-            var emailInfo = DomUtils.EmailList.filterRelevantInfo(messageminimal.result.payload.headers);
-            DomUtils.EmailList.createItem({
-              title: emailInfo.Subject,
-              sender: emailInfo.From,
-              date: new Date(emailInfo.Date)
-            }, messageminimal.result.snippet, messageminimal.result.id, new Date(emailInfo.Date).getTime());
+            var liItem = _this._addEmailToList(messageminimal);
+
+            _this._addEmailClickedListener(liItem);
           })["catch"](function (err) {
             console.log(err);
           });
@@ -359,6 +360,16 @@ function (_BasePage) {
       })["catch"](function (err) {
         console.log(err);
       });
+    }
+  }, {
+    key: "_addEmailToList",
+    value: function _addEmailToList(messageminimal) {
+      var emailInfo = DomUtils.EmailList.filterRelevantInfo(messageminimal.result.payload.headers);
+      return DomUtils.EmailList.createItem({
+        title: emailInfo.Subject,
+        sender: emailInfo.From,
+        date: new Date(emailInfo.Date)
+      }, messageminimal.result.snippet, messageminimal.result.id, new Date(emailInfo.Date).getTime());
     }
   }, {
     key: "_addEmailsListener",
@@ -370,6 +381,21 @@ function (_BasePage) {
       this._addSignOutListeners();
 
       this._addFoldersListener();
+    }
+  }, {
+    key: "_addEmailClickedListener",
+    value: function _addEmailClickedListener(liItem) {
+      liItem.addEventListener("click", function (event) {
+        GmailAPI.getEmail({
+          userId: "me",
+          id: event.target.id,
+          format: "full"
+        }).then(function (resp) {
+          console.log(resp);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      });
     }
   }, {
     key: "_addFoldersListener",

@@ -84,6 +84,7 @@ $toggledfolder: rgba(32, 32, 32, 0.8);
           }
 
           .content {
+            pointer-events: none;
             height: 100%;
 
             .message {
@@ -128,10 +129,12 @@ $toggledfolder: rgba(32, 32, 32, 0.8);
           .checkbox {
             flex: 1;
             min-width: 42px;
+            pointer-events: none;
           }
 
           .content {
             flex: 9;
+            pointer-events: none;
           }
         }
       }
