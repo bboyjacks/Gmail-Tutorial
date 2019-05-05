@@ -72,12 +72,31 @@ var DomUtils = function () {
       return result;
     };
 
-    var createItem = function createItem(email, i) {
-      var emailList = document.querySelector(".email-list");
+    var createItem = function createItem(email, snippet, id, timesignature) {
       var liItem = document.createElement("li");
-      liItem.setAttribute("i", i);
-      liItem.innerHTML = ["<div class=\"checkbox\">", "<input type=\"checkbox\" name=\"email-item\">", "</div>", "<div class=\"content\">", "<div class=\"message\">", "<div class=\"title\">".concat(email.title, "</div>"), "<div class=\"sender\">".concat(email.sender, "</div>"), "<div class=\"snippet\">".concat(email.snippet, "</div>"), "<div class=\"date\">".concat(email.date, "</div>"), "</div>", "<div class=\"delete\">", "<i class=\"fas fa-trash-alt\"></i>", "</div>", "</div>", "</li>"].join("");
-      emailList.appendChild(liItem);
+      liItem.setAttribute("timesignature", timesignature);
+      liItem.setAttribute("id", id);
+      liItem.innerHTML = ["<div class=\"checkbox\">", "<input type=\"checkbox\" name=\"email-item\">", "</div>", "<div class=\"content\">", "<div class=\"message\">", "<div class=\"title\">".concat(email.title, "</div>"), "<div class=\"sender\">".concat(email.sender, "</div>"), "<div class=\"snippet\">".concat(snippet, "</div>"), "<div class=\"date\">".concat(email.date, "</div>"), "</div>", "<div class=\"delete\">", "<i class=\"fas fa-trash-alt\"></i>", "</div>", "</div>", "</li>"].join("");
+      var emailList = document.querySelector(".email-list");
+      var children = emailList.children;
+
+      if (children.length === 0) {
+        emailList.appendChild(liItem);
+      } else {
+        var inserted = false;
+
+        for (var i = 0; i < children.length; i++) {
+          if (timesignature <= children[i].timesignature) {
+            emailList.insertBefore(liItem, children[i]);
+            inserted = true;
+            break;
+          }
+        }
+
+        if (!inserted) {
+          emailList.appendChild(liItem);
+        }
+      }
     };
 
     return {
@@ -136,11 +155,9 @@ var GmailAPI = function () {
     gapi.auth2.getAuthInstance().signOut();
   }
 
-  function getEmailList() {
+  function getEmailList(options) {
     return new Promise(function (resolve, reject) {
-      gapi.client.gmail.users.messages.list({
-        userId: "me"
-      }).then(function (resp) {
+      gapi.client.gmail.users.messages.list(options).then(function (resp) {
         resolve(resp);
       })["catch"](function (err) {
         reject(err);
@@ -148,13 +165,9 @@ var GmailAPI = function () {
     });
   }
 
-  function getEmail(id, format) {
+  function getEmail(options) {
     return new Promise(function (resolve, reject) {
-      gapi.client.gmail.users.messages.get({
-        userId: "me",
-        id: id,
-        format: format
-      }).then(function (resp) {
+      gapi.client.gmail.users.messages.get(options).then(function (resp) {
         resolve(resp);
       })["catch"](function (err) {
         reject(err);
@@ -321,18 +334,24 @@ function (_BasePage) {
   }, {
     key: "_populateEmailList",
     value: function _populateEmailList() {
-      GmailAPI.getEmailList().then(function (resp) {
+      GmailAPI.getEmailList({
+        userId: "me",
+        labelIds: ["INBOX"]
+      }).then(function (resp) {
         return JSON.parse(resp.body);
       }).then(function (list) {
-        list.messages.forEach(function (message, index) {
-          GmailAPI.getEmail(message.id, "metadata").then(function (messageminimal) {
+        list.messages.forEach(function (message) {
+          GmailAPI.getEmail({
+            userId: "me",
+            id: message.id,
+            format: "metadata"
+          }).then(function (messageminimal) {
             var emailInfo = DomUtils.EmailList.filterRelevantInfo(messageminimal.result.payload.headers);
             DomUtils.EmailList.createItem({
               title: emailInfo.Subject,
               sender: emailInfo.From,
-              snippet: messageminimal.result.snippet,
               date: new Date(emailInfo.Date)
-            }, index);
+            }, messageminimal.result.snippet, messageminimal.result.id, new Date(emailInfo.Date).getTime());
           })["catch"](function (err) {
             console.log(err);
           });

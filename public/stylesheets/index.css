@@ -101,6 +101,7 @@ body .container .emails-container .side-panel {
   border-right: 1px solid #bebebe;
   min-width: 400px;
   max-width: 500px;
+  overflow: hidden;
 }
 
 html .container .emails-container .side-panel .nav-bar,
