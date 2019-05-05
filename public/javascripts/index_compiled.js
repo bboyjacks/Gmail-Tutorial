@@ -60,8 +60,35 @@ var DomUtils = function () {
     };
   }();
 
+  var EmailList = function () {
+    var filterRelevantInfo = function filterRelevantInfo(headers) {
+      var result = {};
+      var filteredHeaders = headers.filter(function (header) {
+        return header.name === "From" || header.name === "Subject" || header.name === "Date";
+      });
+      filteredHeaders.forEach(function (header) {
+        result[header.name] = header.value;
+      });
+      return result;
+    };
+
+    var createItem = function createItem(email, i) {
+      var emailList = document.querySelector(".email-list");
+      var liItem = document.createElement("li");
+      liItem.setAttribute("i", i);
+      liItem.innerHTML = ["<div class=\"checkbox\">", "<input type=\"checkbox\" name=\"email-item\">", "</div>", "<div class=\"content\">", "<div class=\"message\">", "<div class=\"title\">".concat(email.title, "</div>"), "<div class=\"sender\">".concat(email.sender, "</div>"), "<div class=\"snippet\">".concat(email.snippet, "</div>"), "<div class=\"date\">".concat(email.date, "</div>"), "</div>", "<div class=\"delete\">", "<i class=\"fas fa-trash-alt\"></i>", "</div>", "</div>", "</li>"].join("");
+      emailList.appendChild(liItem);
+    };
+
+    return {
+      createItem: createItem,
+      filterRelevantInfo: filterRelevantInfo
+    };
+  }();
+
   return {
-    Container: Container
+    Container: Container,
+    EmailList: EmailList
   };
 }();
 "use strict";
@@ -109,7 +136,35 @@ var GmailAPI = function () {
     gapi.auth2.getAuthInstance().signOut();
   }
 
+  function getEmailList() {
+    return new Promise(function (resolve, reject) {
+      gapi.client.gmail.users.messages.list({
+        userId: "me"
+      }).then(function (resp) {
+        resolve(resp);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  }
+
+  function getEmail(id, format) {
+    return new Promise(function (resolve, reject) {
+      gapi.client.gmail.users.messages.get({
+        userId: "me",
+        id: id,
+        format: format
+      }).then(function (resp) {
+        resolve(resp);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  }
+
   return {
+    getEmail: getEmail,
+    getEmailList: getEmailList,
     handleClientLoad: handleClientLoad,
     handleAuthClick: handleAuthClick,
     handleSignoutClick: handleSignoutClick
@@ -260,6 +315,31 @@ function (_BasePage) {
     key: "_addListeners",
     value: function _addListeners() {
       this._addEmailsListener();
+
+      this._populateEmailList();
+    }
+  }, {
+    key: "_populateEmailList",
+    value: function _populateEmailList() {
+      GmailAPI.getEmailList().then(function (resp) {
+        return JSON.parse(resp.body);
+      }).then(function (list) {
+        list.messages.forEach(function (message, index) {
+          GmailAPI.getEmail(message.id, "metadata").then(function (messageminimal) {
+            var emailInfo = DomUtils.EmailList.filterRelevantInfo(messageminimal.result.payload.headers);
+            DomUtils.EmailList.createItem({
+              title: emailInfo.Subject,
+              sender: emailInfo.From,
+              snippet: messageminimal.result.snippet,
+              date: new Date(emailInfo.Date)
+            }, index);
+          })["catch"](function (err) {
+            console.log(err);
+          });
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }, {
     key: "_addEmailsListener",

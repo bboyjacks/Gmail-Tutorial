@@ -99,8 +99,8 @@ body .container .emails-container .side-panel {
           flex: 1;
   background: rgba(32, 32, 32, 0);
   border-right: 1px solid #bebebe;
-  min-width: 300px;
-  max-width: 400px;
+  min-width: 400px;
+  max-width: 500px;
 }
 
 html .container .emails-container .side-panel .nav-bar,
@@ -185,6 +185,102 @@ body .container .emails-container .side-panel .content .email-lists {
   -webkit-box-flex: 5;
       -ms-flex: 5;
           flex: 5;
+  overflow-y: scroll;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li,
+body .container .emails-container .side-panel .content .email-lists .email-list > li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 10px;
+  padding-right: 0px;
+  width: 100%;
+  cursor: pointer;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li:hover,
+body .container .emails-container .side-panel .content .email-lists .email-list > li:hover {
+  background: rgba(60, 60, 60, 0.5);
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content {
+  height: 100%;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .message,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .message {
+  -webkit-box-flex: 8;
+      -ms-flex: 8;
+          flex: 8;
+  height: 100%;
+  overflow: hidden;
+  max-width: 305px;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .title,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .title {
+  font-weight: 900;
+  font-size: 20px;
+  color: white;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .sippet,
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .sender,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .sippet,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .sender {
+  margin-top: 5px;
+  font-weight: 100;
+  font-size: 18px;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .snippet,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .snippet {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .date,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .message .date {
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content .delete,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content .delete {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .checkbox,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .checkbox {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 42px;
+}
+
+html .container .emails-container .side-panel .content .email-lists .email-list > li .content,
+body .container .emails-container .side-panel .content .email-lists .email-list > li .content {
+  -webkit-box-flex: 9;
+      -ms-flex: 9;
+          flex: 9;
 }
 
 html .container .emails-container .main-panel,
