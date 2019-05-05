@@ -1,0 +1,21 @@
+{
+  "name": "springybutton",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "babel ./lib/babel --out-file ./public/javascripts/index_compiled.js; nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.19.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4"
+  }
+}
