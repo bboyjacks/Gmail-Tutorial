@@ -1,0 +1,40 @@
+.login-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login-button {
+    height: 50px;
+    width: 250px;
+    color: $lightcolor;
+    border: 1px solid $lightcolor;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+      border: 1px solid white;
+    }
+
+    i {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+
+      &::after {
+        font-family: sans-serif;
+        content: "Sign in with google";
+        color: $lightcolor;
+        margin-left: 5px;
+      }
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}

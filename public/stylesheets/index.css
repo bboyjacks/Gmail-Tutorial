@@ -1,1 +1,270 @@
-/* No CSS *//*# sourceMappingURL=index.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-weight: 100;
+  font-stretch: condensed;
+}
+
+html .container,
+body .container {
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#303030, black);
+}
+
+html .container .login-container,
+body .container .login-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html .container .login-container .login-button,
+body .container .login-container .login-button {
+  height: 50px;
+  width: 250px;
+  color: #bebebe;
+  border: 1px solid #bebebe;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+html .container .login-container .login-button:hover,
+body .container .login-container .login-button:hover {
+  border: 1px solid white;
+}
+
+html .container .login-container .login-button i,
+body .container .login-container .login-button i {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  pointer-events: none;
+}
+
+html .container .login-container .login-button i::after,
+body .container .login-container .login-button i::after {
+  font-family: sans-serif;
+  content: "Sign in with google";
+  color: #bebebe;
+  margin-left: 5px;
+}
+
+html .container .login-container .login-button i:hover,
+body .container .login-container .login-button i:hover {
+  color: white;
+}
+
+html .container .emails-container,
+body .container .emails-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #bebebe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+html .container .emails-container .side-panel,
+body .container .emails-container .side-panel {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: rgba(32, 32, 32, 0);
+  border-right: 1px solid #bebebe;
+}
+
+html .container .emails-container .side-panel .nav-bar,
+body .container .emails-container .side-panel .nav-bar {
+  height: 50px;
+  border-bottom: 1px solid #bebebe;
+  width: 100%;
+}
+
+html .container .emails-container .side-panel .nav-bar .create-email,
+body .container .emails-container .side-panel .nav-bar .create-email {
+  width: 50px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  float: right;
+  cursor: pointer;
+}
+
+html .container .emails-container .side-panel .content,
+body .container .emails-container .side-panel .content {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+html .container .emails-container .side-panel .content .folders,
+body .container .emails-container .side-panel .content .folders {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+html .container .emails-container .side-panel .content .email-lists,
+body .container .emails-container .side-panel .content .email-lists {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+html .container .emails-container .main-panel,
+body .container .emails-container .main-panel {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+html .container .emails-container .main-panel .nav-bar,
+body .container .emails-container .main-panel .nav-bar {
+  height: 50px;
+  border-bottom: 1px solid #bebebe;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  padding: 10px;
+}
+
+html .container .emails-container .main-panel .nav-bar .user-button,
+body .container .emails-container .main-panel .nav-bar .user-button {
+  width: 30px;
+  height: 30px;
+  color: #bebebe;
+  border: 1px solid #bebebe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: color 0.3s ease-in, border 0.3s ease-in;
+  transition: color 0.3s ease-in, border 0.3s ease-in;
+}
+
+html .container .emails-container .main-panel .nav-bar .user-button::after,
+body .container .emails-container .main-panel .nav-bar .user-button::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f007";
+}
+
+html .container .emails-container .main-panel .nav-bar .user-button:hover,
+body .container .emails-container .main-panel .nav-bar .user-button:hover {
+  color: white;
+  border: 1px solid white;
+}
+
+html .container .emails-container .main-panel .nav-bar .toggled,
+body .container .emails-container .main-panel .nav-bar .toggled {
+  color: white;
+  border: 1px solid white;
+}
+
+html .container .emails-container .main-panel .nav-bar .username,
+body .container .emails-container .main-panel .nav-bar .username {
+  margin-right: 10px;
+}
+
+html .container .emails-container .main-panel .nav-bar .username p,
+body .container .emails-container .main-panel .nav-bar .username p {
+  line-height: 30px;
+  vertical-align: center;
+}
+
+html .container .emails-container .main-panel .user-info,
+body .container .emails-container .main-panel .user-info {
+  height: 100px;
+  width: 200px;
+  border: 1px solid #bebebe;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in, -webkit-transform 0.3s ease-in;
+  transition: opacity 0.3s ease-in, -webkit-transform 0.3s ease-in;
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in, -webkit-transform 0.3s ease-in;
+  padding: 10px;
+  font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+html .container .emails-container .main-panel .user-info .controls,
+body .container .emails-container .main-panel .user-info .controls {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+html .container .emails-container .main-panel .user-info .controls:hover,
+body .container .emails-container .main-panel .user-info .controls:hover {
+  color: white;
+}
+
+html .container .emails-container .main-panel .show,
+body .container .emails-container .main-panel .show {
+  opacity: 1;
+}
+/*# sourceMappingURL=index.css.map */

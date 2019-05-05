@@ -1,0 +1,127 @@
+.emails-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: $lightcolor;
+  display: flex;
+
+  .side-panel {
+    flex: 1;
+    background: rgba(32, 32, 32, 0);
+    border-right: 1px solid $lightcolor;
+
+    .nav-bar {
+      height: 50px;
+      border-bottom: 1px solid $lightcolor;
+      width: 100%;
+
+      .create-email {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: right;
+        cursor: pointer;
+      }
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+
+      .folders {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .email-lists {
+        flex: 4;
+      }
+    }
+  }
+
+  .main-panel {
+    flex: 2;
+
+    .nav-bar {
+      height: 50px;
+      border-bottom: 1px solid $lightcolor;
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 10px;
+
+      .user-button {
+        width: 30px;
+        height: 30px;
+        color: $lightcolor;
+        border: 1px solid $lightcolor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s ease-in, border 0.3s ease-in;
+
+        &::after {
+          position: absolute;
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          content: "\f007";
+        }
+
+        &:hover {
+          color: white;
+          border: 1px solid white;
+        }
+      }
+
+      .toggled {
+        color: white;
+        border: 1px solid white;
+      }
+
+      .username {
+        margin-right: 10px;
+
+        p {
+          line-height: 30px;
+          vertical-align: center;
+        }
+      }
+    }
+
+    .user-info {
+      height: 100px;
+      width: 200px;
+      border: 1px solid $lightcolor;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+      padding: 10px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .controls {
+        margin-top: 5px;
+        cursor: pointer;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .show {
+      opacity: 1;
+    }
+  }
+}
