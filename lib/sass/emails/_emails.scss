@@ -1,3 +1,6 @@
+$folderbackground: rgba(16, 16, 16, 0.5);
+$toggledfolder: rgba(32, 32, 32, 0.8);
+
 .emails-container {
   width: 100%;
   height: 100%;
@@ -9,6 +12,8 @@
     flex: 1;
     background: rgba(32, 32, 32, 0);
     border-right: 1px solid $lightcolor;
+    min-width: 300px;
+    max-width: 400px;
 
     .nav-bar {
       height: 50px;
@@ -34,10 +39,35 @@
       .folders {
         flex: 1;
         background: rgba(0, 0, 0, 0.4);
+        max-width: 66px;
+        min-width: 65px;
+
+        & > div {
+          width: 66px;
+          height: 66px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: $folderbackground;
+          transition: background 0.3s ease-in;
+
+          i {
+            font-size: 20px;
+            pointer-events: none;
+          }
+
+          &:hover {
+            color: white;
+          }
+        }
+
+        .toggled {
+          background: $toggledfolder;
+        }
       }
 
       .email-lists {
-        flex: 4;
+        flex: 5;
       }
     }
   }

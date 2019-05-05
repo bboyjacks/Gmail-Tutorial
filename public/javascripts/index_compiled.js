@@ -269,6 +269,21 @@ function (_BasePage) {
       this._addUserInfoListener();
 
       this._addSignOutListeners();
+
+      this._addFoldersListener();
+    }
+  }, {
+    key: "_addFoldersListener",
+    value: function _addFoldersListener() {
+      var foldersContainer = document.querySelectorAll(".folders > div");
+      foldersContainer.forEach(function (folder) {
+        folder.addEventListener("click", function (event) {
+          foldersContainer.forEach(function (item) {
+            item.classList.remove("toggled");
+          });
+          event.target.classList.toggle("toggled");
+        });
+      });
     }
   }, {
     key: "_addEmailsContainerListener",
