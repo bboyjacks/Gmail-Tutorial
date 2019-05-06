@@ -292,6 +292,15 @@ body .container .emails-container .main-panel {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 html .container .emails-container .main-panel .nav-bar,
@@ -404,5 +413,38 @@ body .container .emails-container .main-panel .user-info .controls:hover {
 html .container .emails-container .main-panel .show,
 body .container .emails-container .main-panel .show {
   opacity: 1;
+}
+
+html .container .emails-container .main-panel .email-content,
+body .container .emails-container .main-panel .email-content {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html .container .emails-container .main-panel .email-content .header,
+body .container .emails-container .main-panel .email-content .header {
+  width: 100%;
+  height: 50px;
+  background: rgba(66, 66, 66, 0.5);
+  -webkit-box-shadow: 0 1px 1px rgba(66, 66, 66, 0.5);
+          box-shadow: 0 1px 1px rgba(66, 66, 66, 0.5);
+}
+
+html .container .emails-container .main-panel .email-content .body,
+body .container .emails-container .main-panel .email-content .body {
+  min-width: 600px;
+  max-width: 600px;
+  height: 100%;
+  border: 1px solid white;
 }
 /*# sourceMappingURL=index.css.map */
